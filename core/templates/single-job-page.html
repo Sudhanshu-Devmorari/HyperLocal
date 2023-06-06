@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Business Detail{% endblock title %}
+
+{% block content %}
+<!-- Titlebar
+================================================== -->
+<div class="single-page-header" data-background-image="{% static 'img/single-job.jpg' %}">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="single-page-header-inner">
+					<div class="left-side">
+						<div class="header-image"><a href="single-company-profile.html"><img src="{% static 'images/company-logo-01.png' %}" alt=""></a></div>
+						<div class="header-details">
+							<h2 id="textspace" class='clrtext'>{{details_obj.name}}</h2>
+							<h5 id="textlight">{{details_obj.keyword}}</h5>
+							<ul>
+								<li><i id='iconblue' class="icon-material-outline-location-on"></i>{{details_obj.address}} {{details_obj.city}}, {{details_obj.state}} {{details_obj.postal_code}}</li>
+							</ul>
+						</div>
+					</div>
+					{% if details_obj.years_in_business %}
+					<div class="right-side">
+						<div class="salary-box">
+							<div id='boldtext' class="salary-type text-sm ">YEARS IN BUSINESS</div>
+							<div class="clrtext salary-amount text-center">{{details_obj.years_in_business}}</div>
+						</div>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Page Content
+================================================== -->
+<div class="container">
+	<div class="row">
+		
+		<!-- Content -->
+		<div class="col-xl-8 col-lg-8 content-right-offset">
+
+			<div class="single-page-section">
+				<h3 id='boldtext' class="margin-bottom-25">Business Description</h3>
+				<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>
+
+				<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+
+				<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
+			</div>
+
+			{% if details_obj.categories %}
+			<div class="webdetail">
+				<h3 id='boldtext' class="margin-bottom-5">Business Categories</h3>
+				<div id="single-job-map-container">
+					<p>{{details_obj.categories}}</p>
+				</div>
+			</div>
+			{% else %}
+			{% endif %}
+			
+			<div class="webdetail">
+				<h3 id='boldtext' class="margin-bottom-5">Business WebSite</h3>
+				<div id="single-job-map-container">
+					<a href="{{details_obj.website}}">{{details_obj.website}}</a>
+				</div>
+			</div>
+			<div class="single-page-section">
+				<h3 id='boldtext' class="margin-bottom-5">Other WebSite</h3>
+				{% for data in details_obj.other_links %}
+				<div id="single-job-map-container">
+					<a href="{{data}}">{{data}}</a>
+				</div>
+				{% endfor %}
+			</div>
+			</div>
+		<!-- Sidebar -->
+		<div class="col-xl-4 col-lg-4">
+			<div class="sidebar-container">
+	
+				<!-- Sidebar Widget -->
+				<div class="sidebar-widget">
+					<div class="job-overview">
+						<div id='boldtext' class="job-overview-headline">Business Summary</div>
+						<div class="job-overview-inner">
+							<ul>
+								<li>
+									<i class="icon-material-outline-business-center"></i>
+									<span>Email</span>
+									<h5>{{details_obj.email}}</h5>
+								</li>
+								<li>
+									<i class="icon-material-outline-business-center"></i>
+									<span>Phone</span>
+									<h5>{{details_obj.phone}}</h5>
+								</li>
+								<li>
+									<i class="icon-material-outline-location-on"></i>
+									<span>Location</span>
+									<h5>{{details_obj.address}} {{details_obj.city}}, {{details_obj.state}} {{details_obj.postal_code}}</h5>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+{% endblock content %}
+{% block staticjs %}
+    <script src="{% static 'js/business_listing.js' %}" type="text/javascript"></script>
+	<!-- Scripts {% static 'css/colors/blue.css' %}
+================================================== -->
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.3.2.min.js' %}"></script>
+<script src="{% static 'js/mmenu.min.js' %}"></script>
+<script src="{% static 'js/tippy.all.min.js' %}"></script>
+<script src="{% static 'js/simplebar.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-slider.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'js/snackbar.js' %}"></script>
+<script src="{% static 'js/clipboard.min.js' %}"></script>
+<script src="{% static 'js/counterup.min.js' %}"></script>
+<script src="{% static 'js/magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+{% endblock staticjs %}

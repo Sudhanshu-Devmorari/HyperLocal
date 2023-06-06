@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}ERROR{% endblock title %}
+
+{% block content %}
+<!-- Page Content
+================================================== -->
+<!-- Container -->
+<div class="container">
+
+	<div class="row">
+		<div class="col-xl-12">
+
+			<section id="not-found" class="center margin-top-50 margin-bottom-25">
+				<h2>404 <i class="icon-line-awesome-question-circle"></i></h2>
+				<p>We're sorry, but the page you were looking for doesn't exist</p>
+			</section>
+
+			<form class='mgbottom' action="{% url 'Business-list' %}" method='POST'>
+				{% csrf_token %}
+				<!-- <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"> -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="intro-banner-search-form margin-top-95">
+							<!-- Search Field -->
+							<div class="intro-search-field with-autocomplete position-relative">
+								<label for="autocomplete-input" class="field-title ripple-effect">Service</label>
+								<div class="input-with-icon">
+									<input id="autocomplete-input keywordInput" class="keywordInput" type="text" name="keyword" placeholder="Service Needed">
+									<!-- <i class="icon-material-outline-location-on"></i> -->
+									<div id="serviceList" class="position-absolute w-100">
+									</div>
+								</div>
+							</div>
+	
+							<!-- Search Field -->
+							<div class="intro-search-field">
+								<label for="intro-keywords" class="field-title ripple-effect">Location</label>
+								<div class="input-with-icon">
+								<input id="intro-keywords" class="locationInput" name="location" type="text" placeholder="City, St or Zip">
+								<i class="icon-material-outline-location-on"></i>
+								<div id="locationList" class="position-absolute w-100">
+								</div>
+								</div>
+							</div>
+							
+	
+							<!-- Button -->
+							<div class="intro-search-button">
+								<button type='submit' class="button ripple-effect">Search</button>
+							</div>
+	
+						</div>
+	
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+</div>
+<!-- Container / End -->
+
+
+<!-- Spacer -->
+<div class="margin-top-70"></div>
+<!-- Spacer / End-->
+{% endblock content %}
+{% block staticjs %}
+<script src="{% static 'js/index.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/business_listing.js' %}" type="text/javascript"></script>
+<!-- Scripts {% static 'css/colors/blue.css' %}
+================================================== -->
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.3.2.min.js' %}"></script>
+<script src="{% static 'js/mmenu.min.js' %}"></script>
+<script src="{% static 'js/tippy.all.min.js' %}"></script>
+<script src="{% static 'js/simplebar.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-slider.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'js/snackbar.js' %}"></script>
+<script src="{% static 'js/clipboard.min.js' %}"></script>
+<script src="{% static 'js/counterup.min.js' %}"></script>
+<script src="{% static 'js/magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+{% endblock staticjs %}

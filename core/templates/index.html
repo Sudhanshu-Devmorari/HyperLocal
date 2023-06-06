@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}HyperLocal{% endblock title %}
+
+{% block content %}
+<!-- Intro Banner
+================================================== -->
+<!-- add class "disable-gradient" to enable consistent background overlay -->
+<div class="intro-banner" data-background-image="{% static 'img/home-background.jpg' %}">
+	<div class="container">
+
+		<!-- Intro Headline -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="banner-headline">
+					<h3>
+						<strong>Explore</strong>
+						<br>
+						<span><strong class="color">HyperLocal</strong> helps you find local businesses in your city and
+							neighborhood.</span>
+					</h3>
+				</div>
+			</div>
+		</div>
+
+		<!-- Search Bar -->
+		<form action="{% url 'Business-list' %}" method='POST'>
+			{% csrf_token %}
+			<!-- <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"> -->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="intro-banner-search-form margin-top-95">
+						<!-- Search Field -->
+						<div class="intro-search-field with-autocomplete position-relative">
+							<label for="autocomplete-input" class="field-title ripple-effect">Service</label>
+							<div class="input-with-icon">
+								<input id="autocomplete-input keywordInput" class="keywordInput" type="text" name="keyword" placeholder="Service Needed">
+								<!-- <i class="icon-material-outline-location-on"></i> -->
+								<div id="serviceList" class="position-absolute w-100">
+								</div>
+							</div>
+						</div>
+
+						<!-- Search Field -->
+						<div class="intro-search-field">
+							<label for="intro-keywords" class="field-title ripple-effect">Location</label>
+							<div class="input-with-icon">
+							<input id="intro-keywords" class="locationInput" name="location" type="text" placeholder="City, St or Zip">
+							<i class="icon-material-outline-location-on"></i>
+							<div id="locationList" class="position-absolute w-100">
+							</div>
+							</div>
+						</div>
+						
+
+						<!-- Button -->
+						<div class="intro-search-button">
+							<button type='submit' class="button ripple-effect">Search</button>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</form>
+		<div class="listDropdown">
+			
+			
+
+		</div>
+		</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<!-- Category Boxes -->
+<div class="section margin-top-65">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-12">
+
+				<div class="section-headline centered margin-bottom-15">
+					<h3>Popular Business Categories</h3>
+				</div>
+
+				<!-- Category Boxes Container -->
+				<div class="categories-container">
+
+					<!-- Category Box -->
+					<a href="#" class="category-box">
+						<div class="category-box-icon">
+							<i class="fa fa-solid fa-blender-phone"></i>
+						</div>
+						
+						<div class="category-box-content">
+							<h3>Appliance Repair</h3>
+						</div>
+					</a>
+					<!-- Category Box -->
+					<a href="" class="category-box">
+						<div class="category-box-icon">
+							<i class="fa fa-solid fa-tooth"></i>
+						</div>
+						<div class="category-box-content">
+							<h3>Dentists</h3>
+						</div>
+					</a>
+
+					<!-- Category Box -->
+					<a href="#" class="category-box">
+						<div class="category-box-icon">
+							<i class="fa fa-plug-circle-bolt"></i>
+						</div>
+						<div class="category-box-content">
+							<h3>Electricians</h3>
+						</div>
+					</a>
+
+					<!-- Category Box -->
+					<a href="#" class="category-box">
+						<div class="category-box-icon">
+							<i class="fas fa-hard-hat"></i>
+						</div>
+						<div class="category-box-content">
+							<h3>General Contractors</h3>
+						</div>
+					</a>
+					<a href="#" class="category-box">
+						<div class="category-box-icon">
+							<i class="fa fa-solid fa-screwdriver-wrench"></i>
+						</div>
+						<div class="category-box-content">
+							<h3>Plumbers</h3>
+						</div>
+					</a><!-- Category Box -->
+					<a href="#" class="category-box">
+						<div class="category-box-icon">
+							<i class="fas fa-utensils"></i>
+						</div>
+						<div class="category-box-content">
+							<h3>Restaurants</h3>
+						</div>
+					</a><!-- Category Box -->
+					<a href="#" class="category-box">
+						<div class="category-box-icon">
+							<i class="fas fa-warehouse"></i>
+						</div>
+						<div class="category-box-content">
+							<h3>Self-Storage</h3>
+						</div>
+					</a><!-- Category Box -->
+					<a href="#" class="category-box">
+						<div class="category-box-icon">
+							<i class="fa fa-sharp fa-solid fa-cart-shopping"></i>
+						</div>
+						<div class="category-box-content">
+							<h3>Shopping</h3>
+						</div>
+					</a><!-- Category Box -->
+					<a href="#" class="category-box">
+						<div class="category-box-icon">
+							<i class="fa fa-solid fa-spa"></i>
+						</div>
+						<div class="category-box-content">
+							<h3>Spa & Beauty</h3>
+						</div>
+					</a><!-- Category Box -->
+					<a href="#" class="category-box">
+						<div class="category-box-icon">
+							<i class="fa fa-solid fa-user-doctor"></i>
+						</div>
+						<div class="category-box-content">
+							<h3>Veterinarians</h3>
+						</div>
+					</a>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Highest Rated Freelancers -->
+<div class="section gray padding-top-65 padding-bottom-70 full-width-carousel-fix">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-xl-12">
+				<!-- Section Headline -->
+				<div class="section-headline margin-top-0 margin-bottom-25">
+					<h3>Popular Cities</h3>
+				</div>
+			</div>
+
+			<div class="col-xl-12">
+				<div class="default-slick-carousel freelancers-container freelancers-grid-layout">
+
+					<!--Freelancer -->
+					<div class="freelancer">
+						<a href="#" class="photo-box"
+							data-background-image="{% static 'img/featured-city-01.jpg' %}">
+							<div class="photo-box-content">
+								<h3>San Francisco</h3>
+							</div>
+						</a>
+					</div>
+					<!-- Freelancer / End -->
+
+					<!--Freelancer -->
+					<div class="freelancer">
+						<a href="#" class="photo-box" data-background-image="{% static 'img/featured-city-02.jpg' %}">
+							<div class="photo-box-content">
+								<h3>Los Angeles</h3>
+							</div>
+						</a>
+					</div>
+					<!-- Freelancer / End -->
+					<!--Freelancer -->
+					<div class="freelancer">
+						<a href="#" class="photo-box"
+							data-background-image="{% static 'img/featured-city-03.jpg' %}">
+							<div class="photo-box-content">
+								<h3>Atlanta</h3>
+							</div>
+						</a>
+					</div>
+					<!-- Freelancer / End -->
+					<!--Freelancer -->
+					<div class="freelancer">
+						<a href="#" class="photo-box"
+							data-background-image="{% static 'img/featured-city-04.jpg' %}">
+							<div class="photo-box-content">
+								<h3>Chicago</h3>
+							</div>
+						</a>
+					</div>
+					<!-- Freelancer / End -->
+					<!--Freelancer -->
+					<div class="freelancer">
+						<a href="#" class="photo-box"
+							data-background-image="{% static 'img/featured-city-01.jpg' %}">
+							<div class="photo-box-content">
+								<h3>Boston</h3>
+							</div>
+						</a>
+					</div>
+					<!-- Freelancer / End -->
+					<!--Freelancer -->
+					<div class="freelancer">
+						<a href="#" class="photo-box"
+							data-background-image="{% static 'img/featured-city-02.jpg' %}">
+							<div class="photo-box-content">
+								<h3>New York City</h3>
+							</div>
+						</a>
+					</div>
+					<!-- Freelancer / End -->
+					<!--Freelancer -->
+					<div class="freelancer">
+						<a href="#" class="photo-box"
+							data-background-image="{% static 'img/featured-city-03.jpg' %}">
+							<div class="photo-box-content">
+								<h3>Portland</h3>
+							</div>
+						</a>
+					</div>
+					<!-- Freelancer / End -->
+					<div class="freelancer">
+						<a href="#" class="photo-box"
+							data-background-image="{% static 'img/featured-city-04.jpg' %}">
+							<div class="photo-box-content">
+								<h3>Philadelphia</h3>
+							</div>
+						</a>
+					</div>
+					<div class="freelancer">
+						<a href="#" class="photo-box"
+							data-background-image="{% static 'img/featured-city-01.jpg' %}">
+							<div class="photo-box-content">
+								<h3>Austin</h3>
+							</div>
+						</a>
+					</div>
+					<div class="freelancer">
+						<a href="#" class="photo-box"
+							data-background-image="{% static 'img/featured-city-03.jpg' %}">
+							<div class="photo-box-content">
+								<h3>Houston</h3>
+							</div>
+						</a>
+					</div>
+					<div class="freelancer">
+						<a href="#" class="photo-box"
+							data-background-image="{% static 'img/featured-city-03.jpg' %}">
+							<div class="photo-box-content">
+								<h3>Seattle</h3>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Highest Rated Freelancers / End-->
+
+
+<!-- Membership Plans -->
+
+<!-- Membership Plans / End-->
+{% endblock content %}
+{% block staticjs %}
+<script src="{% static 'js/index.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/business_listing.js' %}" type="text/javascript"></script>
+<!-- Scripts {% static 'css/colors/blue.css' %}
+================================================== -->
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.3.2.min.js' %}"></script>
+<script src="{% static 'js/mmenu.min.js' %}"></script>
+<script src="{% static 'js/tippy.all.min.js' %}"></script>
+<script src="{% static 'js/simplebar.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-slider.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'js/snackbar.js' %}"></script>
+<script src="{% static 'js/clipboard.min.js' %}"></script>
+<script src="{% static 'js/counterup.min.js' %}"></script>
+<script src="{% static 'js/magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+{% endblock staticjs %}

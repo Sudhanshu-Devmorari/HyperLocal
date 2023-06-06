@@ -1,0 +1,84 @@
+{% load static %}
+{% block header %}
+
+<div id="wrapper">
+
+    <!-- Header Container
+    ================================================== -->
+    <header id="header-container" class="fullwidth">
+    
+        <!-- Header -->
+        <div id="header">
+            <div class="container">
+                
+                <!-- Left Side Content -->
+                <div class="left-side">
+                    
+                    <!-- Logo -->
+                    <div id="logo">
+                        <a href="#"><img src="{% static 'images/logo.png' %}" alt=""></a>
+                    </div>
+    
+                    <!-- Main Navigation -->
+                    <nav id="navigation">
+                        <ul id="responsive">
+    
+                            <li><h3><a href="{% url 'Business-Search' %}" class="current">HyperLocal</a>
+                            </h3></li></ul>
+                    </nav>
+                    <div class="clearfix"></div>
+                    <!-- Main Navigation / End -->
+                    
+                </div>
+                <!-- Left Side Content / End -->
+    
+    
+                <!-- Right Side Content / End -->
+                <div class="right-side">
+    
+                    <!--  User Notifications -->
+                    <div class="header-widget">
+                    </div>
+                    <!--  User Notifications / End -->
+                
+                    <!-- User Menu -->
+                    <nav id="navigation">
+                        <ul id="responsive">
+                            <li><button class="custmbtn"><i class="fa-solid fa-bars-staggered" style="color: blue;"></i></button>
+                                <ul class="dropdown-nav">
+                                    <li><a href="{% url 'Signup' %}"><i class="fa fa-user-plus iconmargin"></i>Business Signup</a></li>
+                                    {% if request.user.is_authenticated %}
+                                    <li><a href="{% url 'logout' %}"><i class="fa fa-duotone fa-right-to-bracket fa-rotate-180 iconmargin"></i>Logout</a></li>
+                                    {% else %}
+                                    <li><a href="{% url 'Login' %}"><i class="fa fa-solid fa-right-to-bracket iconmargin"></i>Business Login</a></li>
+                                    {% endif %}
+                                    <li><a href="{% url 'Business-Listing' %}"><i class="fa fa-solid fa-list-ul list iconmargin"></i>Business Listing</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="header-widget">
+                    </div>
+                    <!-- User Menu / End -->
+    
+                    
+                    <!-- Mobile Navigation Button -->
+                    <span class="mmenu-trigger">
+                        <button class="hamburger hamburger--collapse" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </span>
+                </div>
+                <!-- Right Side Content / End -->
+    
+            </div>
+        </div>
+        <!-- Header / End -->
+    
+    </header>
+    <div class="clearfix"></div>
+    <!-- Header Container / End -->
+    
+{% endblock header %}
