@@ -3,6 +3,8 @@ $(document).ready(function () {
 
   // Handle form submission
   $(".locationInput").on("input", function (event) {
+    const locationList = document.getElementById("locationList");
+    locationList.classList.add("w-100");
 
     const loc = [
       "Birmingham, AL",
@@ -17,7 +19,7 @@ $(document).ready(function () {
       "Little Rock, AR",
       "Bakersfield, CA",
       "Fresno, CA",
-      "Long BeachLong Beach",
+      "Long BeachLong, CA",
       "Los Angeles, CA",
       "Napa, CA",
       "Oakland, CA",
@@ -76,8 +78,8 @@ $(document).ready(function () {
       "Duluth, MN",
       "Minneapolis, MN",
       "Jackson, MS",
-      "Kansas CityKansas City",
-      "St. Louis, MO",
+      "Kansas City, MO",
+      "Louis, MO",
       "Springfield, MO",
       "Billings, MT",
       "Lincoln, NE",
@@ -143,13 +145,15 @@ $(document).ready(function () {
       "Milwaukee, WI",
       "Cheyenne, WY",
     ];
-    const location = loc.concat(businessPostalcode.map((e)=>String(e)))
+
+    const location = loc.concat(businessPostalcode?.map((e)=>String(e)))
     // console.log(location);
     // console.log(event.target.value);
 
     const filteredLocations = location.filter((obj) =>
-      obj.toLowerCase().startsWith(event.target.value.toLowerCase())
+      obj?.toLowerCase().startsWith(event.target.value.toLowerCase())
     );
+
     // console.log(filteredLocations);
     const locationListEle = document.getElementById("locationList");
     locationListEle.style.display = "block"
@@ -175,6 +179,8 @@ $(document).ready(function () {
   });
 
   $(".keywordInput").on("input", function (event) {
+    const serviceList = document.getElementById("serviceList");
+    serviceList.classList.add("w-100");
     /*const keyword = [
       'wealth managers',
       "Storage Units",
