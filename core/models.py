@@ -68,11 +68,9 @@ class Details(models.Model):
 
     def __str__(self):
         return "%s"%(self.uuid)
-    
-    # class Meta:
-    #     db_table = "core_details"
 
 class Locations(models.Model):
+    state_shortform = models.CharField(max_length=512, null=True, blank=True)
     state = models.CharField(max_length=512, null=True, blank=True)
     cities = ArrayField(models.CharField(max_length=1024, null=True, blank=True), default=list)
 

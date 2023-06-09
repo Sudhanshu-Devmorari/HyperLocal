@@ -28,7 +28,7 @@
 								<div class="input-with-icon">
 									<input id="autocomplete-input keywordInput" class="keywordInput" type="text" name="keyword" placeholder="Service Needed">
 									<!-- <i class="icon-material-outline-location-on"></i> -->
-									<div id="serviceList" class="position-absolute w-100">
+									<div id="serviceList" class="position-absolute">
 									</div>
 								</div>
 							</div>
@@ -39,7 +39,7 @@
 								<div class="input-with-icon">
 								<input id="intro-keywords" class="locationInput" name="location" type="text" placeholder="City, St or Zip">
 								<i class="icon-material-outline-location-on"></i>
-								<div id="locationList" class="position-absolute w-100">
+								<div id="locationList" class="position-absolute">
 								</div>
 								</div>
 							</div>
@@ -68,6 +68,12 @@
 <!-- Spacer / End-->
 {% endblock content %}
 {% block staticjs %}
+<script>
+	var businessSearchContext = {{ detail_service|safe }};
+</script>
+<script>
+	var businessPostalcode = {{ detail_postalcode|safe }};
+</script>
 <script src="{% static 'js/index.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/business_listing.js' %}" type="text/javascript"></script>
 <!-- Scripts {% static 'css/colors/blue.css' %}

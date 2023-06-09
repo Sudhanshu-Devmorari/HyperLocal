@@ -1,8 +1,10 @@
 $(document).ready(function () {
+  // console.log(businessPostalcode)
+
   // Handle form submission
   $(".locationInput").on("input", function (event) {
 
-    const location = [
+    const loc = [
       "Birmingham, AL",
       "Huntsville, AL",
       "Mobile, AL",
@@ -141,13 +143,14 @@ $(document).ready(function () {
       "Milwaukee, WI",
       "Cheyenne, WY",
     ];
-
-    console.log(event.target.value);
+    const location = loc.concat(businessPostalcode.map((e)=>String(e)))
+    // console.log(location);
+    // console.log(event.target.value);
 
     const filteredLocations = location.filter((obj) =>
       obj.toLowerCase().startsWith(event.target.value.toLowerCase())
     );
-    console.log(filteredLocations);
+    // console.log(filteredLocations);
     const locationListEle = document.getElementById("locationList");
     locationListEle.style.display = "block"
     
@@ -162,7 +165,7 @@ $(document).ready(function () {
       child.style.cursor = "pointer";
 
       child.addEventListener("click", function (e) {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         $(".locationInput").val(e.target.value);
         locationListEle.innerHTML = "";
         locationListEle.style.display = "none"
@@ -172,7 +175,7 @@ $(document).ready(function () {
   });
 
   $(".keywordInput").on("input", function (event) {
-    const keyword = [
+    /*const keyword = [
       'wealth managers',
       "Storage Units",
       "Plumbers",
@@ -470,12 +473,13 @@ $(document).ready(function () {
       "Recycling Centers",
       "Social Security Offices",
       "Trash Removal",
-    ];
-    console.log(event.target.value);
+    ];*/
+    const keyword = businessSearchContext
+    // console.log(event.target.value);
     const filteredkeyword = keyword.filter((obj) =>
       obj.toLowerCase().startsWith(event.target.value.toLowerCase())
     );
-    console.log(filteredkeyword);
+    // console.log(filteredkeyword);
     const serviceListEle = document.getElementById("serviceList");
     serviceListEle.style.display = "block"
     serviceListEle.innerHTML = "";
@@ -488,7 +492,7 @@ $(document).ready(function () {
       child.style.cursor = "pointer";
 
       child.addEventListener("click", function (e) {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         $(".keywordInput").val(e.target.value);
         serviceListEle.innerHTML = "";
         serviceListEle.style.display = "none"
@@ -499,14 +503,14 @@ $(document).ready(function () {
   });
 
   $("#formsubmit").click(function (event) {
-    console.log("asdasdas");
+    // console.log("asdasdas");
     event.preventDefault(); // Prevent the default form submission
 
     // Get the form values
     var keyword = $("#autocomplete-input").val();
     var location = $("#intro-keywords").val();
     var csrfToken = $("input[name=csrfmiddlewaretoken]").val();
-    console.log(csrfToken, location, keyword);
+    // console.log(csrfToken, location, keyword);
     // Create the form data object
     var formData = {
       keyword: keyword,
@@ -533,7 +537,7 @@ $(document).ready(function () {
       },
       error: function (xhr, status, error) {
         // Handle the error response
-        console.log(error);
+        // console.log(error);
         // Perform any further actions in case of an error
       },
     });

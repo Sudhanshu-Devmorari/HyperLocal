@@ -16,4 +16,4 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Locations)
 class LocationsAdmin(admin.ModelAdmin):
-     list_display = ('id','state','cities')
+     list_display = ('id','state_shortform','state','cities')
