@@ -45,8 +45,8 @@
                         <i class="fa fa-regular fa-flag"></i>
                         <select id="id_state" name='b_state' onchange="send_data()" class="form-select" aria-label="Default select example" required>
                             <option disabled selected>Select State</option>
-                            {% for st in state %}
-                            <option id="id_{{st}}" value="{{st}}">{{st}}</option>
+                            {% for st in state_obj %}
+                            <option id="id_{{st.state}}" value="{{st.state_shortform}}">{{st.state}}</option>
                             {% endfor %}
                           </select>
                     </div>

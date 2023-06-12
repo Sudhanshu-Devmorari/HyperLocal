@@ -64,7 +64,7 @@ class LoginView(View):
 class BusinessSearchView(View):
     def get(self, request, *args, **kwargs):
         location = []
-        loc_obj = Locations.objects.all()
+        loc_obj = Locations.objects.all().order_by('id')
         for loc in loc_obj:
             detail = {
                 'state':loc.state,
@@ -178,11 +178,20 @@ class BusinesslistView(View):
             else:
                 try:
                     if Details.objects.filter(name__iexact=request.POST.get('keyword')).exists():
-                        details_obj = Details.objects.get(name__iexact=request.POST.get('keyword'))
-                        context = {
-                                    'details_obj':details_obj
+                        if Details.objects.filter(name__iexact=request.POST.get('keyword')).count() > 1:
+                            details_obj = Details.objects.filter(name__iexact=request.POST.get('keyword'))
+                            context = {
+                                'keyword':request.POST.get('keyword'),
+                                'location':request.POST.get('location'),
+                                'details_obj':details_obj
                                 }
-                        return render(request, 'single-job-page.html',context=context)
+                            return render(request, 'jobs-list-layout-1.html',context=context)
+                        else:
+                            details_obj = Details.objects.get(name__iexact=request.POST.get('keyword'))
+                            context = {
+                                        'details_obj':details_obj
+                                    }
+                            return render(request, 'single-job-page.html',context=context)
                     else:
                         categories = []
                         categories_obj = Categories.objects.all()
@@ -224,7 +233,11 @@ class BusinessListingView(LoginRequiredMixin,UserPassesTestMixin,View):
         return self.request.user
     
     def get(self, request, *args, **kwargs):
-        return render(request,'business_listing.html')
+        state_obj = Locations.objects.all().order_by('id')
+        context = {
+            'state_obj':state_obj
+                }
+        return render(request,'business_listing.html', context=context)
     
     def post(self, request, *args, **kwargs):
         if request.POST.get('b_year') == '':
@@ -290,12 +303,10 @@ class CategoriesBusinessView(View):
             if request.GET.get('location') != '':
                 print("=======",request.GET.get('keyword'),"=======",request.GET.get('location'))
                 try:
-                    print("-1")
                     loc_obj = request.GET.get('location').split(',')
-                    print("-----",loc_obj)
 
                     if Details.objects.filter(categories__icontains=request.GET.get('keyword'), city__iexact=loc_obj[0], state__iexact=loc_obj[-1].split(' ')[-1]).exists():
-                        print("1")
+                        
                         details_obj = Details.objects.filter(categories__icontains=request.GET.get('keyword'), city__iexact=loc_obj[0], state__iexact=loc_obj[-1].split(' ')[-1])
                         context = {
                             'keyword':request.GET.get('keyword'),
@@ -309,10 +320,9 @@ class CategoriesBusinessView(View):
                     pass
 
                 try:
-                    print("-2")
                     postalcode = int(request.GET.get('location'))
                     if Details.objects.filter(categories__icontains=request.GET.get('keyword'), postal_code = postalcode).exists():
-                        print("2")
+                        
                         details_obj = Details.objects.filter(categories__icontains=request.GET.get('keyword'), postal_code = postalcode)
                         context = {
                             'keyword':request.GET.get('keyword'),
@@ -326,10 +336,9 @@ class CategoriesBusinessView(View):
                     pass
 
                 try:
-                    print("-3")
                     postalcode = int(request.GET.get('location'))
                     if Details.objects.filter(keyword__iexact=request.GET.get('keyword'), postal_code = postalcode).exists():
-                        print("3")
+                        
                         details_obj = Details.objects.filter(keyword__iexact=request.GET.get('keyword'), postal_code = postalcode)
                         context = {
                             'keyword':request.GET.get('keyword'),
@@ -343,10 +352,9 @@ class CategoriesBusinessView(View):
                     pass
                 
                 try:
-                    print("-4")
                     loc_obj = request.GET.get('location').split(',')
                     if Details.objects.filter(keyword__iexact=request.GET.get('keyword'), city__iexact=loc_obj[0], state__iexact=loc_obj[-1].split(' ')[-1]).exists():
-                        print("4")
+                        
                         details_obj = Details.objects.filter(keyword__iexact=request.GET.get('keyword'), city__iexact=loc_obj[0], state__iexact=loc_obj[-1].split(' ')[-1])
                         context = {
                             'keyword':request.GET.get('keyword'),
@@ -384,7 +392,6 @@ class CategoriesBusinessView(View):
 
 class DiscoverCategoriesView(View):
     def get(self, request, *args, **kwargs):
-        print("*********", request.GET.get('keyword'))
         location = []
         loc_obj = Locations.objects.all()
         for loc in loc_obj:
