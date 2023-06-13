@@ -3305,10 +3305,10 @@ body #backtotop a {
         line-height: 24px;
     }
     .single-page-header .salary-box {
-        padding: 0;
+        padding: 20px 25px;
         margin-top: 15px;
         margin-bottom: 20px;
-        background-color: transparent;
+        background-color: #fff;
         box-shadow: none;
     }
     .salary-box .salary-type {

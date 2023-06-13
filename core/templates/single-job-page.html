@@ -39,17 +39,25 @@
 ================================================== -->
 <div class="container">
 	<div class="row">
-		
+
 		<!-- Content -->
 		<div class="col-xl-8 col-lg-8 content-right-offset">
 
 			<div class="single-page-section">
 				<h3 id='boldtext' class="margin-bottom-25">Business Description</h3>
-				<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>
+				<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches
+					to corporate strategy foster collaborative thinking to further the overall value proposition.
+					Organically grow the holistic world view of disruptive innovation via workplace diversity and
+					empowerment.</p>
 
-				<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+				<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day,
+					going forward, a new normal that has evolved from generation X is on the runway heading towards a
+					streamlined cloud solution. User generated content in real-time will have multiple touchpoints for
+					offshoring.</p>
 
-				<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
+				<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override
+					the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the
+					information highway will close the loop on focusing solely on the bottom line.</p>
 			</div>
 
 			{% if details_obj.categories %}
@@ -61,26 +69,34 @@
 			</div>
 			{% else %}
 			{% endif %}
-			
+			{% if details_obj.website %}
 			<div class="webdetail">
 				<h3 id='boldtext' class="margin-bottom-5">Business WebSite</h3>
 				<div id="single-job-map-container">
 					<a href="{{details_obj.website}}">{{details_obj.website}}</a>
 				</div>
 			</div>
-			<div class="single-page-section">
-				<h3 id='boldtext' class="margin-bottom-5">Other WebSite</h3>
+			{% else %}
+			{% endif %}
+			{% if details_obj.other_links|length > 0 %}
 				{% for data in details_obj.other_links %}
-				<div id="single-job-map-container">
-					<a href="{{data}}">{{data}}</a>
-				</div>
+					{% if data != None %}
+						<div class="single-page-section">
+							<h3 id="boldtext" class="margin-bottom-5">Other Website</h3>
+							<div id="single-job-map-container">
+								<a href="{{ data }}">{{ data }}</a>
+							</div>
+						</div>
+					{% else %}
+					{% endif %}
 				{% endfor %}
-			</div>
-			</div>
+			{% else %}
+			{% endif %}
+		</div>
 		<!-- Sidebar -->
 		<div class="col-xl-4 col-lg-4">
 			<div class="sidebar-container">
-	
+
 				<!-- Sidebar Widget -->
 				<div class="sidebar-widget">
 					<div class="job-overview">
@@ -100,7 +116,8 @@
 								<li>
 									<i class="icon-material-outline-location-on"></i>
 									<span>Location</span>
-									<h5>{{details_obj.address}} {{details_obj.city}}, {{details_obj.state}} {{details_obj.postal_code}}</h5>
+									<h5>{{details_obj.address}} {{details_obj.city}}, {{details_obj.state}}
+										{{details_obj.postal_code}}</h5>
 								</li>
 							</ul>
 						</div>
@@ -112,10 +129,11 @@
 
 	</div>
 </div>
+<div class="margin-top-70"></div>
 {% endblock content %}
 {% block staticjs %}
-    <script src="{% static 'js/business_listing.js' %}" type="text/javascript"></script>
-	<!-- Scripts {% static 'css/colors/blue.css' %}
+<script src="{% static 'js/business_listing.js' %}" type="text/javascript"></script>
+<!-- Scripts {% static 'css/colors/blue.css' %}
 ================================================== -->
 <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'js/jquery-migrate-3.3.2.min.js' %}"></script>

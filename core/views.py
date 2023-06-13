@@ -96,7 +96,6 @@ class BusinessSearchView(View):
 # @method_decorator(cache_page(60 * 60 * 24), name='dispatch')
 class BusinesslistView(View):
     def post(self, request, *args, **kwargs):
-        print("*****",request.POST.get('keyword'),'*****',request.POST.get('location'))
         if request.POST.get('keyword') != '':
             if request.POST.get('location') != '':
                 try:
@@ -301,7 +300,6 @@ class CategoriesBusinessView(View):
     def get(self, request, *args, **kwargs):
         if request.GET.get('keyword') != '':
             if request.GET.get('location') != '':
-                print("=======",request.GET.get('keyword'),"=======",request.GET.get('location'))
                 try:
                     loc_obj = request.GET.get('location').split(',')
 
@@ -426,3 +424,8 @@ class DiscoverCategoriesView(View):
 def log_out(request):
         logout(request)
         return redirect('Login')
+
+
+d = Details.objects.filter(categories__icontains='Financial Planners', city='Richmond')
+for i in d:
+    print(i.state)

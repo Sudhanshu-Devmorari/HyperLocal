@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Details, User, Locations
+from .models import Details, User, Locations, Categories
 # Register your models here.
 
 
@@ -17,3 +17,8 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(Locations)
 class LocationsAdmin(admin.ModelAdmin):
      list_display = ('id','state_shortform','state','cities')
+
+
+@admin.register(Categories)
+class CategoriesAdmin(admin.ModelAdmin):
+     list_display = ('id','categories_name')
