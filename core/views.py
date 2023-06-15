@@ -424,8 +424,3 @@ class DiscoverCategoriesView(View):
 def log_out(request):
         logout(request)
         return redirect('Login')
-
-
-d = Details.objects.filter(categories__icontains='Financial Planners', city='Richmond')
-for i in d:
-    print(i.state)
